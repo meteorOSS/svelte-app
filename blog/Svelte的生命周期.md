@@ -24,6 +24,7 @@ Svelte提供了一系列的生命周期函数，允许在组件的不同阶段�
 
 **`onDestroy`**: 当组件即将从 DOM 中移除时调用。这个函数适用于执行清理操作，如移除事件监听器或取消订阅。
 
+```javascript
 <script>
     import {onMount,afterUpdate,beforeUpdate} from 'svelte'
     let node;
@@ -44,29 +45,6 @@ Svelte提供了一系列的生命周期函数，允许在组件的不同阶段�
             console.log(node.offsetWidth)
         }
     })
-</script>
-
-```javascript
-<script>
-	import {onMount,afterUpdate,beforeUpdate} from 'svelte'
-	let node;
-	let title = "hello world";
-	onMount(()=>{
-		console.log("onMount()")
-		setTimeout(()=>{
-			title = "meteor";
-		},3000)
-	})
-	afterUpdate(()=>{
-		console.log("afterUpdate()")
-		console.log(node.offsetWidth);
-	})
-	beforeUpdate(()=>{
-		console.log("beforeUpdate()")
-		if(node) {
-			console.log(node.offsetWidth)
-		}
-	})
 </script>
 
 
