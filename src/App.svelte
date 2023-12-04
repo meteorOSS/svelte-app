@@ -1,20 +1,26 @@
+<!-- Login.svelte -->
 <script>
-	// import Countdown from "./Countdown.svelte";
-	import DomBind from "./DomBind.svelte";
-	import CustomizeEvent from "./event/CustomizeEvent.svelte";
-	import AwaitBlockDemo from "./compent/AwaitBlockDemo.svelte";
-	// 当CustomizeEvent组件中的completed触发时为true
-	let eventCall = false;
-</script>
-
+	import { login } from './store/userStore.js';
+	import { user } from './store/userStore.js';
+	let username = '';
+	let password = '';
+  
+	function handleSubmit() {
+	  login(username, password);
+	}
+  </script>
+  
 <main>
-	<!-- <Countdown countdwon={10}/> -->
-	<DomBind></DomBind>
-	<CustomizeEvent on:complted={()=>{
-		eventCall=true
-	}}></CustomizeEvent>
-	{#if eventCall}
-	<h1>已触发complted事件</h1>
+	{#if $user}
+	<hd>欢迎你，{username}</hd>
+	{:else}
+	<form on:submit|preventDefault={handleSubmit}>
+		<input type="text" bind:value={username} placeholder="用户名" />
+		<input type="password" bind:value={password} placeholder="密码" />
+		<button type="submit">登录</button>
+	</form>
 	{/if}
-	<AwaitBlockDemo></AwaitBlockDemo>
+
+
 </main>
+  
