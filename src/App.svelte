@@ -1,30 +1,20 @@
 <script>
-	export let name;
+	// import Countdown from "./Countdown.svelte";
+	import DomBind from "./DomBind.svelte";
+	import CustomizeEvent from "./event/CustomizeEvent.svelte";
+	import AwaitBlockDemo from "./AwaitBlockDemo.svelte";
+	// 当CustomizeEvent组件中的completed触发时为true
+	let eventCall = false;
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<!-- <Countdown countdwon={10}/> -->
+	<DomBind></DomBind>
+	<CustomizeEvent on:complted={()=>{
+		eventCall=true
+	}}></CustomizeEvent>
+	{#if eventCall}
+	<h1>已触发complted事件</h1>
+	{/if}
+	<AwaitBlockDemo></AwaitBlockDemo>
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
