@@ -18,14 +18,14 @@ Svelte提供了三个Store API ，依照功能可分为 `readable` `writable` `d
 
 ```javascript
 <script>
-	import {writable} from 'svelte/store'
-	const countdown = writable(10)
-	// update
-	countdown.update((currentValue) =>{
-		return currentValue-1;
-	})
-	// set
-	countdown.set(9)
+    import {writable} from 'svelte/store'
+    const countdown = writable(10)
+    // update
+    countdown.update((currentValue) =>{
+        return currentValue-1;
+    })
+    // set
+    countdown.set(9)
 </script>
 ```
 
@@ -70,7 +70,6 @@ Svelte提供了三个Store API ，依照功能可分为 `readable` `writable` `d
 <h1>size</h1>
 <p>width: {$windowSize.width}px</p>
 <p>height: {$windowSize.height}px</p>
-
 ```
 
 在这个例子中，`readable`存储被用来订阅浏览器窗口的大小变化。让我们来解析一下这段代码
@@ -104,10 +103,10 @@ Svelte提供了三个Store API ，依照功能可分为 `readable` `writable` `d
 所有的store都提供了subscribe()方法，其中接收一个回调函数，参数val返回store中的值
 
 ```javascript
-	const vl = writable(10)
-	vl.subscribe(val=>{
-		console.log(val)
-	})
+    const vl = writable(10)
+    vl.subscribe(val=>{
+        console.log(val)
+    })
 ```
 
 在svelte中有更简便的方式访问store，只需在变量前加入 `$` 即可
@@ -142,30 +141,62 @@ export function logout(){
 ```javascript
 <!-- Login.svelte -->
 <script>
-	import { login } from './store/userStore.js';
-	import { user } from './store/userStore.js';
-	let username = '';
-	let password = '';
-  
-	function handleSubmit() {
-	  login(username, password);
-	}
+    import { login } from './store/userStore.js';
+    import { user } from './store/userStore.js';
+    let username = '';
+    let password = '';
+
+    function handleSubmit() {
+      login(username, password);
+    }
   </script>
-  
+
 <main>
-	{#if $user}
-	<hd>欢迎你，{username}</hd>
-	{:else}
-	<form on:submit|preventDefault={handleSubmit}>
-		<input type="text" bind:value={username} placeholder="用户名" />
-		<input type="password" bind:value={password} placeholder="密码" />
-		<button type="submit">登录</button>
-	</form>
-	{/if}
+    {#if $user}
+    <hd>欢迎你，{username}</hd>
+    {:else}
+    <form on:submit|preventDefault={handleSubmit}>
+        <input type="text" bind:value={username} placeholder="用户名" />
+        <input type="password" bind:value={password} placeholder="密码" />
+        <button type="submit">登录</button>
+    </form>
+    {/if}
 </main>
-  
 ```
 
 演示如下:
 
 ![login](login.gif)
+
+### setContext()
+
+```javascript
+function setContext<T>(key: any, context: T): T;
+```
+
+类似于react的context,它用于全局共享状态;
+
+```javascript
+<script>
+	import {setContext} from 'svelte'
+	import UserView from './UserView.svelte'
+	const user = setContext("user",{
+		username: 'zsh'
+	});
+	
+</script>
+
+<UserView></UserView>
+```
+
+```javascript
+<script>
+	import {getContext} from 'svelte'
+    // 取得context
+	const user = getContext('user')
+</script>
+
+<div>
+	{user.username}
+</div>
+```
