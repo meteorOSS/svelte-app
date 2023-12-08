@@ -9,3 +9,5 @@
 [bind语法](https://github.com/meteorOSS/svelte-app/blob/master/blog/bind%E8%AF%AD%E6%B3%95.md)
 [Svelte的生命周期](https://github.com/meteorOSS/svelte-app/blob/master/blog/Svelte%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
 [Svelte中Context与Store的用法 (1)](https://github.com/meteorOSS/svelte-app/blob/master/blog/%E8%AE%A4%E8%AF%86Svelte%E4%B8%ADContext%E4%B8%8EStore%E7%9A%84%E7%94%A8%E6%B3%95%20(1).md)
+[motion库: tween与spring](https://github.com/meteorOSS/svelte-app/blob/master/blog/Svelte当中的motion互动库.md)
+[class与slot插槽](https://github.com/meteorOSS/svelte-app/blob/master/blog/class与slot插槽.md)
